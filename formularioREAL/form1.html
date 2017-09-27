@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+   <link rel="stylesheet" type="text/css" href="form1.css">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Contact Form</title>
+</head>
+
+<body>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <header class="body">
+    </header>
+
+    <section class="body">
+      <form method="post" action="index.php" enctype="multipart/form-data">
+
+    <label>Nombre</label>
+    <input name="name" placeholder="Escriba Aqui" required>
+
+    <label>RUT</label>
+    <input name="rut" placeholder="111.111.111-1"required>
+
+
+        <label>Comuna</label>
+        <input name="comuna" placeholder="Ej:Las Condes"required>
+
+
+            <label>Ciudad</label>
+            <input name="ciudad" placeholder="Ej:Santiago"required>
+
+
+                <label>Telefono</label>
+                <input name="telefono" placeholder="+5696541256"required>
+
+    <label>Email</label>
+    <input name="email" type="email" placeholder="ejemplo@dominio.com"required>
+
+<h2>DATOS ACADEMICOS</h2>
+
+<label>Enseñanza Básica y Media</label>
+
+<input disabled  maxlength="3" size="3" value="200" id="counter">
+
+<textarea name="colegio" placeholder="Ingresar nombre de escuela y año de egreso" maxlength="400" onkeyup="textCounter(this,'counter',200);"></textarea>
+
+
+<label>Enseñanza Superior</label>
+
+<input disabled  maxlength="3" size="3" value="200" id="counter">
+<textarea name="media" onkeyup="textCounter(this,'counter',200);" placeholder="Ingresar nombre de Universidad/Instituto y año de egreso" maxlength="400"></textarea>
+
+
+<label>Titulos</label>
+
+<input disabled  maxlength="3" size="3" value="200" id="counter">
+<textarea name="titulos" onkeyup="textCounter(this,'counter',200);" placeholder="Especificar porfavor grado académico" maxlength="400"></textarea>
+
+
+<label>Cursos y diplomados</label>
+
+<input disabled  maxlength="3" size="3" value="200" id="counter">
+<textarea onkeyup="textCounter(this,'counter',200);" name="cursos" placeholder="Especificar año e institución" maxlength="400"></textarea>
+
+<h2>EXPERIENCIA PROFESIONAL</h2>
+<input disabled  maxlength="3" size="3" value="200" id="counter">
+<textarea onkeyup="textCounter(this,'counter',200);" name="experiencia" placeholder="Indicar nombre de Empresa y años trabajados" maxlength="400"></textarea>
+
+
+<h2>INFORMACION ADICIONAL</h2>
+
+
+    <label>Comentarios</label>
+    <input disabled  maxlength="3" size="3" value="200" id="counter">
+    <textarea name="message" placeholder="Describa Aquí"  maxlength="200"></textarea>
+    <span class="countdown"></span>
+
+
+Adjunte su CV (soporta archivos word,pdf y txt)
+    <input type="file" name="fileToUpload" id="fileToUpload">
+<br>
+    <label>Ingrese el codigo de seguridad</label>
+<br>
+<br>
+    <img id="captcha" src="/securimage/securimage_show.php" alt="CAPTCHA Image" />
+
+
+    <input type="text" name="captcha_code" size="10" maxlength="6" required/>
+
+    <a href="#" onclick="document.getElementById('captcha').src = '/securimage/securimage_show.php?' + Math.random(); return false">[ Different Image ]</a>
+
+    <input id="submit" name="submit" type="submit" value="ENVIAR">
+</form>
+
+    </section>
+
+    <footer class="body">
+    </footer>
+
+</body>
+
+<!--FUNCION CONTADOR-->
+
+
+
+</html>

@@ -1,0 +1,16 @@
+Product_Id,Product_Line,Product_category,Product_Subcategory
+1,Sporting Goods,Outdoor Recreation,Winter Sports & Activities
+2,Food, Beverages & Tobacco,Food Items,Fruits & Vegetables
+3,Apparel & Accessories,Clothing,Uniforms
+4,Sporting Goods,Athletics,Rugby
+5,Health & Beauty,Personal Care
+6,Arts & Entertainment,Hobbies & Creative Arts,Musical Instruments
+7,Arts & Entertainment,Hobbies & Creative Arts,Orchestra Accessories
+8,Arts & Entertainment,Hobbies & Creative Arts,Crafting Materials
+9,Hardware,Tool Accessories,Power Tool Batteries
+10,Home & Garden,Bathroom Accessories,Bath Caddies
+11,Food, Beverages & Tobacco,Food Items,Frozen Vegetables
+12,Home & Garden,Lawn & Garden,Power Equipment
+13,Office Supplies,Presentation Supplies,Display
+14,Hardware,Tool Accessories,Jigs
+15,Baby & Toddler,Diapering,Baby Wipes

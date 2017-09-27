@@ -1,0 +1,100 @@
+/* Centre the page */
+.body {
+    display:block;
+    margin:0 auto;
+    width:576px;
+}
+
+*{
+font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+
+  background-color: #559053;
+}
+
+/* Centre the form within the page */
+form {
+    margin:0 auto;
+    width:459px;
+}
+
+/*labels*/
+label{
+
+  font-weight: bold;
+
+}
+
+/*Placeholder Color*/
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    white;
+    font-style: normal;
+
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    white;
+   font-style: normal;
+
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+  font-style: normal;
+
+   color:    white;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  font-style: normal;
+
+   color:    white;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+  font-style: normal;
+
+   color:    white;
+}
+
+/* Style the text boxes */
+input, textarea {
+	width:439px;
+	background:#e2ad17;
+	border:1px solid #dedede;
+	padding:10px;
+  font-style: normal;
+
+	margin-top:5px;
+	font-size:0.9em;
+  border: none;
+  border-radius: 18px;
+}
+
+input{
+  height:27px;
+
+}
+
+textarea{
+  height:100px;
+
+}
+
+
+
+input:focus, textarea:focus {
+    border:1px solid #97d6eb;
+}
+
+#submit {
+    background-color: green;
+    width:439px;
+    height:38px;
+
+    border:none;
+    margin-top:20px;
+    cursor:pointer;
+}
+
+	#submit:hover {
+	    opacity:.9;
+      background-color: orange;
+
+	}
