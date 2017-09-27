@@ -4,9 +4,10 @@
 
 
   $name=$_POST['name'];
+  $name=$_POST['direccion'];
 $rut=$_POST['rut'];
-$ciudad=$_POST['ciudad'];
-$comuna=$_POST['comuna'];
+$ciudad=$_POST['regiones'];
+$comuna=$_POST['comunas'];
 $telefono=$_POST['telefono'];
 $email=$_POST['email'];
 $colegio=$_POST['colegio'];

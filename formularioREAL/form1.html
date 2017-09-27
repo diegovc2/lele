@@ -1,15 +1,19 @@
+
+<?php session_start(); ?>
+
 <!DOCTYPE HTML>
 <html>
 
 <head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <script src="jquery.rut.js"></script>
    <link rel="stylesheet" type="text/css" href="form1.css">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Contact Form</title>
 </head>
 
 <body>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <header class="body">
     </header>
@@ -21,19 +25,19 @@
     <input name="name" placeholder="Escriba Aqui" required>
 
     <label>RUT</label>
-    <input name="rut" placeholder="111.111.111-1"required>
+    <input name="rut" id="rut" type="test" placeholder="111.111.111-1"required>
 
+    <label>Direccion</label>
+    <input name="direccion" placeholder="Ej: Camino el Pozo 1234" required>
 
-        <label>Comuna</label>
-        <input name="comuna" placeholder="Ej:Las Condes"required>
+    <label>Region</label>
+    <select id="regiones" name="regiones"></select>
 
+      <label>Comuna</label>
+      <select id="comunas" name="comunas"></select>
 
-            <label>Ciudad</label>
-            <input name="ciudad" placeholder="Ej:Santiago"required>
-
-
-                <label>Telefono</label>
-                <input name="telefono" placeholder="+5696541256"required>
+      <label>Telefono</label>
+      <input type="tel" name="telefono" title="+56911111111" pattern="[\+][0-9]{11}" value="+569" required  maxlength="12">
 
     <label>Email</label>
     <input name="email" type="email" placeholder="ejemplo@dominio.com"required>
@@ -42,30 +46,25 @@
 
 <label>Enseñanza Básica y Media</label>
 
-<input disabled  maxlength="3" size="3" value="200" id="counter">
 
 <textarea name="colegio" placeholder="Ingresar nombre de escuela y año de egreso" maxlength="400" onkeyup="textCounter(this,'counter',200);"></textarea>
 
 
 <label>Enseñanza Superior</label>
 
-<input disabled  maxlength="3" size="3" value="200" id="counter">
 <textarea name="media" onkeyup="textCounter(this,'counter',200);" placeholder="Ingresar nombre de Universidad/Instituto y año de egreso" maxlength="400"></textarea>
 
 
 <label>Titulos</label>
 
-<input disabled  maxlength="3" size="3" value="200" id="counter">
-<textarea name="titulos" onkeyup="textCounter(this,'counter',200);" placeholder="Especificar porfavor grado académico" maxlength="400"></textarea>
+<textarea name="titulos" onkeyup="textCounter(this,'counter',200);" placeholder="Especificar por favor grado académico" maxlength="400"></textarea>
 
 
 <label>Cursos y diplomados</label>
 
-<input disabled  maxlength="3" size="3" value="200" id="counter">
 <textarea onkeyup="textCounter(this,'counter',200);" name="cursos" placeholder="Especificar año e institución" maxlength="400"></textarea>
 
 <h2>EXPERIENCIA PROFESIONAL</h2>
-<input disabled  maxlength="3" size="3" value="200" id="counter">
 <textarea onkeyup="textCounter(this,'counter',200);" name="experiencia" placeholder="Indicar nombre de Empresa y años trabajados" maxlength="400"></textarea>
 
 
@@ -73,9 +72,7 @@
 
 
     <label>Comentarios</label>
-    <input disabled  maxlength="3" size="3" value="200" id="counter">
     <textarea name="message" placeholder="Describa Aquí"  maxlength="200"></textarea>
-    <span class="countdown"></span>
 
 
 Adjunte su CV (soporta archivos word,pdf y txt)
@@ -84,12 +81,12 @@ Adjunte su CV (soporta archivos word,pdf y txt)
     <label>Ingrese el codigo de seguridad</label>
 <br>
 <br>
-    <img id="captcha" src="/securimage/securimage_show.php" alt="CAPTCHA Image" />
 
+<img id="captcha" src="securimage/securimage_show.php" alt="CAPTCHA Image" />
 
     <input type="text" name="captcha_code" size="10" maxlength="6" required/>
 
-    <a href="#" onclick="document.getElementById('captcha').src = '/securimage/securimage_show.php?' + Math.random(); return false">[ Different Image ]</a>
+    <a href="#" onclick="document.getElementById('captcha').src = 'securimage/securimage_show.php?' + Math.random(); return false">[ Different Image ]</a>
 
     <input id="submit" name="submit" type="submit" value="ENVIAR">
 </form>
@@ -99,9 +96,29 @@ Adjunte su CV (soporta archivos word,pdf y txt)
     <footer class="body">
     </footer>
 
+    <script  src="js/index.js"></script>
+
+
+    <script>
+
+      $(function() {
+          $("#rut").rut().on('rutValido', function(e, rut, dv) {
+            alert("El rut " + rut + "-" + dv + " es correcto");
+          }, { minimumLength: 7} );
+          $("input#rut").rut().on('rutInvalido', function(e) {
+            var rut=document.getElementById('rut');
+
+            alert("El rut " + $(this).val() + " es inválido");
+    });
+
+      });
+
+
+    </script>
+
+
 </body>
 
-<!--FUNCION CONTADOR-->
 
 
 
