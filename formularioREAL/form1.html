@@ -8,44 +8,24 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
   <script src="jquery.rut.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-  <link rel="stylesheet" href="css/materialize.css">
+   <link rel="stylesheet" type="text/css" href="form1.css">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Contact Form</title>
 </head>
 
-<header>
+<body>
 
-  <nav>
-  <div class="nav-wrapper">
-    <a href="#" class="brand-logo">ATM</a>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="sass.html">Home</a></li>
-
-    </ul>
-  </div>
-</nav>
-
-  </header
-
-
-  <body>
-        <div class="container">
-          <!-- Page Content goes here -->
+    <header class="body">
+    </header>
 
     <section class="body">
       <form method="post" action="index.php" enctype="multipart/form-data">
 
-
-
     <label>Nombre</label>
     <input name="name" placeholder="Escriba Aqui" required>
-    <label>RUT</label>
-    <input name="rut" id="rut" type="test" placeholder="111.111.111-1"required/>
 
-    <br></br>
+    <label>RUT</label>
+    <input name="rut" id="rut" type="test" placeholder="111.111.111-1"required>
 
     <label>Direccion</label>
     <input name="direccion" placeholder="Ej: Camino el Pozo 1234" required>
@@ -66,59 +46,38 @@
 
 <label>Enseñanza Básica y Media</label>
 
- <div class="input-field col s12 ">
-   <i class="material-icons prefix">mode_edit</i>
-<textarea data-length="400"  class="materialize-textarea #ffe082 amber lighten-3" name="colegio" placeholder="Ingresar nombre de escuela y año de egreso" maxlength="400"></textarea>
-</div>
+
+<textarea name="colegio" placeholder="Ingresar nombre de escuela y año de egreso" maxlength="400" onkeyup="textCounter(this,'counter',200);"></textarea>
+
 
 <label>Enseñanza Superior</label>
 
-<div class="input-field col s12 ">
-  <i class="material-icons prefix">mode_edit</i>
-<textarea data-length="400"  class="materialize-textarea #ffe082 amber lighten-3" name="media" placeholder="Ingresar nombre de Universidad/Instituto y año de egreso" maxlength="400"></textarea>
-</div>
-
+<textarea name="media" onkeyup="textCounter(this,'counter',200);" placeholder="Ingresar nombre de Universidad/Instituto y año de egreso" maxlength="400"></textarea>
 
 
 <label>Titulos</label>
 
-<div class="input-field col s12 ">
-  <i class="material-icons prefix">mode_edit</i>
-<textarea data-length="400"  class="materialize-textarea #ffe082 amber lighten-3" name="titulos" placeholder="Especificar por favor grado académico" maxlength="400"></textarea>
-</div>
+<textarea name="titulos" onkeyup="textCounter(this,'counter',200);" placeholder="Especificar por favor grado académico" maxlength="400"></textarea>
+
 
 <label>Cursos y diplomados</label>
 
-<div class="input-field col s12 ">
-  <i class="material-icons prefix">mode_edit</i>
-<textarea data-length="400"  class="materialize-textarea #ffe082 amber lighten-3" name="cursos" placeholder="Especificar año e institución" maxlength="400"></textarea>
-</div>
-
+<textarea onkeyup="textCounter(this,'counter',200);" name="cursos" placeholder="Especificar año e institución" maxlength="400"></textarea>
 
 <h2>EXPERIENCIA PROFESIONAL</h2>
-
-<div class="input-field col s12 ">
-  <i class="material-icons prefix">mode_edit</i>
-<textarea data-length="400"  class="materialize-textarea #ffe082 amber lighten-3" name="experiencia" placeholder="Indicar nombre de Empresa y años trabajados" maxlength="400"></textarea>
-</div>
+<textarea onkeyup="textCounter(this,'counter',200);" name="experiencia" placeholder="Indicar nombre de Empresa y años trabajados" maxlength="400"></textarea>
 
 
 <h2>INFORMACION ADICIONAL</h2>
 
 
     <label>Comentarios</label>
-    <div class="input-field col s12 ">
-      <i class="material-icons prefix">mode_edit</i>
-    <textarea data-length="400"  class="materialize-textarea #ffe082 amber lighten-3" name="message" placeholder="Describa Aquí" maxlength="200"></textarea>
-    </div>
+    <textarea name="message" placeholder="Describa Aquí"  maxlength="200"></textarea>
 
 
-
-<label>Adjunte su CV (soporta archivos word,pdf y txt)</label>
-<br>
-<br>
+Adjunte su CV (soporta archivos word,pdf y txt)
     <input type="file" name="fileToUpload" id="fileToUpload">
-<br></br>
+<br>
     <label>Ingrese el codigo de seguridad</label>
 <br>
 <br>
@@ -133,8 +92,6 @@
 </form>
 
     </section>
-
-
 
     <footer class="body">
     </footer>
@@ -164,7 +121,7 @@ document.getElementById('cap').src='secureimage/secureimage_show.php';
 
     </script>
 
-</div>
+
 </body>
 
 
