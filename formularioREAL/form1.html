@@ -82,7 +82,7 @@ Adjunte su CV (soporta archivos word,pdf y txt)
 <br>
 <br>
 
-<img id="captcha" src="securimage/securimage_show.php" alt="CAPTCHA Image" />
+<iframe width="215px" height="80px" id="captcha" src="securimage/securimage_show.php" alt="CAPTCHA Image"></iframe>
 
     <input type="text" name="captcha_code" size="10" maxlength="6" required/>
 
@@ -100,6 +100,11 @@ Adjunte su CV (soporta archivos word,pdf y txt)
 
 
     <script>
+    function reloadCaptcha()
+
+{
+document.getElementById('cap').src='secureimage/secureimage_show.php';
+}
 
       $(function() {
           $("#rut").rut().on('rutValido', function(e, rut, dv) {

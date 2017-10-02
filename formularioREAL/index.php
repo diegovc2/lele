@@ -44,13 +44,8 @@ $securimage = new Securimage();
 
         else{
 
-          $sql="insert into postulaciones (nombre,rut,comuna,ciudad,telefono,email,educacion_basica,educacion_superior,titulos,cursos,experiencia,comentarios) values
-          ('$name','$rut','$comuna','$ciudad','$telefono','$email','$colegio','$media','$titulos','$cursos','$experiencia','$message');";
 
-          $result=mysqli_query($conn,$sql);
-          if($result){
-            echo'se subio';
-          }
+
 
           $target_dir = "uploads/";
           $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -80,15 +75,22 @@ $securimage = new Securimage();
           } else {
               if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
                   echo "El archivo ". basename( $_FILES["fileToUpload"]["name"]). " ha sido subido.";
+
+                  $sql="insert into postulaciones (nombre,rut,comuna,ciudad,telefono,email,educacion_basica,educacion_superior,titulos,cursos,experiencia,comentarios) values
+                  ('$name','$rut','$comuna','$ciudad','$telefono','$email','$colegio','$media','$titulos','$cursos','$experiencia','$message');";
+
+                  $result=mysqli_query($conn,$sql);
+
+                  if(mail($to,$subject,$body,$from)){
+                    echo 'MAIL ENVIADO EXITOSAMENTE';
+
+                  }
               } else {
                   echo "Hubo un error al subir su archivo.";
               }
           }
 
-          if(mail($to,$subject,$body,$from)){
-            echo 'MAIL ENVIADO EXITOSAMENTE';
 
-          }
 
 
 
