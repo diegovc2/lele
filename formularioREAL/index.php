@@ -6,9 +6,11 @@
   $name=$_POST['name'];
   $name=$_POST['direccion'];
 $rut=$_POST['rut'];
-$ciudad=$_POST['regiones'];
-$comuna=$_POST['comunas'];
+$ciudad=$_POST['comunas'];
+$comuna=$_POST['regiones'];
+$codigo=$_POST['codigo'];
 $telefono=$_POST['telefono'];
+$telefonocomp=$codigo.$telefono;
 $email=$_POST['email'];
 $colegio=$_POST['colegio'];
 $media=$_POST['media'];
@@ -76,8 +78,8 @@ $securimage = new Securimage();
               if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
                   echo "El archivo ". basename( $_FILES["fileToUpload"]["name"]). " ha sido subido.";
 
-                  $sql="insert into postulaciones (nombre,rut,comuna,ciudad,telefono,email,educacion_basica,educacion_superior,titulos,cursos,experiencia,comentarios) values
-                  ('$name','$rut','$comuna','$ciudad','$telefono','$email','$colegio','$media','$titulos','$cursos','$experiencia','$message');";
+                  $sql="insert into postulaciones (nombre,rut,region,comuna,telefono,email,educacion_basica,educacion_superior,titulos,cursos,experiencia,comentarios) values
+                  ('$name','$rut','$comuna','$ciudad','$telefonocomp','$email','$colegio','$media','$titulos','$cursos','$experiencia','$message');";
 
                   $result=mysqli_query($conn,$sql);
 
