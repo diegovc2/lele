@@ -27,6 +27,7 @@
 </nav>
 </div>
 
+</header>
 
     <body>
       <script src="https://code.jquery.com/jquery-2.1.2.min.js"></script>
