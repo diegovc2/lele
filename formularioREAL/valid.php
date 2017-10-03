@@ -87,6 +87,8 @@ $securimage = new Securimage();
                     echo 'MAIL ENVIADO EXITOSAMENTE';
 
                   }
+
+                  header('exito.html');
               } else {
                   echo "Hubo un error al subir su archivo.";
               }

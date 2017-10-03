@@ -4267,10 +4267,14 @@ nav .button-collapse i {
 
 nav .brand-logo {
   position: absolute;
-  color: #fff;
+  color: #ffa54f;
   display: inline-block;
   font-size: 2.1rem;
   padding: 0;
+}
+
+.transparentBG {
+  background-color: rgba(0,0,0,0);
 }
 
 nav .brand-logo.center {
@@ -4400,7 +4404,7 @@ nav .input-field label.active i {
 
 .navbar-fixed {
   position: relative;
-  height: 56px;
+  height: 100px;
   z-index: 997;
 }
 
@@ -4413,7 +4417,7 @@ nav .input-field label.active i {
     min-height: 64px;
   }
   nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
-    height: 64px;
+    height: 100px;
     line-height: 64px;
   }
   .navbar-fixed {

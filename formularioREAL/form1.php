@@ -1,45 +1,12 @@
 
-<?php session_start(); ?>
+<?php
+  include_once "header.php";
+ ?>
 
-<!DOCTYPE HTML>
-<html>
+<br>
+<br>
 
-<head>
-
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="css/materialize.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Contact Form</title>
-</head>
-
-<header>
-
-  <nav>
-  <div class="nav-wrapper #fb8c00 orange darken-1
-">
-    <a href="#" class="brand-logo">ATM</a>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="sass.html">Home</a></li>
-
-    </ul>
-  </div>
-</nav>
-
-  </header
-
-
-  <body>
-    <script src="https://code.jquery.com/jquery-2.1.2.min.js"></script>
-      <script src="jquery.rut.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-
-        <div class="container">
-          <!-- Page Content goes here -->
-
-    <section class="body">
-      <form method="post" action="index.php" enctype="multipart/form-data">
+      <form method="post" action="valid.php" enctype="multipart/form-data">
 
 
 
@@ -175,71 +142,5 @@
   </div>
 </form>
 
-    </section>
-
-
-
-
-    <script  src="js/index.js"></script>
-
-
-    <script>
-
-    $(function() {
-    $("#regiones").on('change', function() {
-
-
-        // re-initialize material-select
-        //$('#comunas').material_select();
-        $("#comunas").material_select();
-
-        //$('select').material_select();
-
-    });
-});
-
-      $(document).ready(function() {
-        $('select').material_select();
-      });
-
-
-
-    function reloadCaptcha()
-
-{
-document.getElementById('cap').src='secureimage/secureimage_show.php';
-}
-
-      $(function() {
-
-        var rut=document.getElementById('rut');
-        $("input#rut").rut({
-	           formatOn: 'keyup',
-            minimumLength: 7, // validar largo mínimo; default: 2
-	            validateOn: 'change' // si no se quiere validar, pasar null
-            });
-
-
-          $("input#rut").rut().on('rutValido', function(e, rut, dv) {
-
-            this.setCustomValidity("");
-
-          });
-
-          $("input#rut").rut().on('rutInvalido', function(e) {
-
-            rut.setCustomValidity("RUT Invalido");
-    });
-
-      });
-
-
-    </script>
-
-</div>
-</body>
-
-
-
-
-</html>
+<?php    include_once 'footer.php';
+?>
