@@ -37,8 +37,8 @@ if(($_SESSION['admin'])==1){
 <option value="">--</option>
 <?php
 $sql = "SELECT * FROM users GROUP BY admin ORDER BY admin";
-	$sql_result = mysql_query ($sql, $connection ) or die ('request "Could not execute SQL query" '.$sql);
-	while ($row = mysql_fetch_assoc($sql_result)) {
+	$sql_result = mysqli_query ($conn, $sql) or die ('request "Could not execute SQL query" '.$sql);
+	while ($row = mysqli_fetch_assoc($sql_result)) {
 		echo "<option value='".$row["admin"]."'".($row["admin"]==$_REQUEST["admin"] ? " selected" : "").">".$row["admin"]."</option>";
 	}
 ?>

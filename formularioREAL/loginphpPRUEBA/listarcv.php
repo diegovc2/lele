@@ -78,7 +78,8 @@ if(($_SESSION['admin'])==1){
 
     <td><?php echo $rut ?></td>
 
-	<td><?php echo $ciudad ?></td>
+
+      <td><?php echo $ciudad ?></td>
 
       <td><?php echo $comuna ?></td>
 
