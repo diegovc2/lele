@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
   include_once "header.php";
 
@@ -62,7 +62,7 @@ if(($_SESSION['admin'])==1){
     $nombre=$fila['nombre'];
     $rut=$fila['rut'];
     $comuna=$fila['comuna'];
-    $ciudad=$fila['ciudad'];
+    $ciudad=$fila['region'];
     $telefono=$fila['telefono'];
     $email=$fila['email'];
     $educacion_basica=$fila['educacion_basica'];
@@ -78,9 +78,11 @@ if(($_SESSION['admin'])==1){
 
     <td><?php echo $rut ?></td>
 
+	<td><?php echo $ciudad ?></td>
+
       <td><?php echo $comuna ?></td>
 
-        <td><?php echo $ciudad ?></td>
+        
 
         <td><?php echo $telefono ?></td>
 
