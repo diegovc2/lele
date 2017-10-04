@@ -23,6 +23,8 @@ $("#regiones").on('change', function() {
 
   $(document).ready(function() {
     $('select').material_select();
+    $('.tooltipped').tooltip();
+
   });
 
 

@@ -2371,6 +2371,8 @@ input,
 optgroup,
 select,
 textarea {
+  border: 3px solid #9e9e9e;
+
   color: inherit;
   /* 1 */
   font: inherit;
@@ -2512,6 +2514,7 @@ legend {
  */
 textarea {
   overflow: auto;
+
 }
 
 /**
@@ -5126,8 +5129,8 @@ small {
   opacity: 0;
   height: 7px;
   width: 14px;
-  border-radius: 0 0 50% 50%;
   background-color: #323232;
+  border-radius: 0 0 50% 50%;
   z-index: -1;
   -webkit-transform-origin: 50% 0%;
           transform-origin: 50% 0%;
@@ -6479,6 +6482,8 @@ textarea {
 }
 
 textarea.materialize-textarea {
+  border: 3px solid #9e9e9e;
+
   overflow-y: hidden;
   /* prevents scroll bar flash */
   padding: .8rem 0 1.6rem 0;

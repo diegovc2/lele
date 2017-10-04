@@ -65,9 +65,9 @@ $securimage = new Securimage();
               $uploadOk = 0;
           }
           // Allow certain file formats
-          if($imageFileType != "doc" && $imageFileType != "pdf" && $imageFileType != "txt"
+          if($imageFileType != "doc" && $imageFileType != "pdf"
          && $imageFileType != "docx") {
-              echo "Sólo se admiten archivos .DOCX,.PDF, .TXT y .DOC\n";
+              echo "Sólo se admiten archivos .DOCX,.PDF, y .DOC\n";
               $uploadOk = 0;
           }
           // Check if $uploadOk is set to 0 by an error
@@ -88,10 +88,11 @@ $securimage = new Securimage();
 
                   }
 
-                  header('exito.html');
               } else {
                   echo "Hubo un error al subir su archivo.";
               }
+              header('exito.html');
+
           }
 
 
