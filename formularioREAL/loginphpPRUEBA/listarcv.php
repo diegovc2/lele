@@ -83,7 +83,7 @@ if(($_SESSION['admin'])==1){
 
       <td><?php echo $comuna ?></td>
 
-        
+
 
         <td><?php echo $telefono ?></td>
 
