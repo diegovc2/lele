@@ -1,3 +1,14 @@
+<?php
+session_start(); // this MUST be called prior to any output including whitespaces and line breaks!
+$GLOBALS['ct_recipient']   = 'YOU@EXAMPLE.COM'; // Change to your email address!
+$GLOBALS['ct_msg_subject'] = 'Securimage Test Contact Form';
+$GLOBALS['DEBUG_MODE'] = 1;
+// CHANGE TO 0 TO TURN OFF DEBUG MODE
+// IN DEBUG MODE, ONLY THE CAPTCHA CODE IS VALIDATED, AND NO EMAIL IS SENT
+// Process the form, if it was submitted
+process_si_contact_form();
+?>
+
 <!DOCTYPE HTML>
 <html>
 

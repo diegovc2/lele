@@ -1,7 +1,58 @@
 
-<?php
-  include_once "header.php";
+
+ <?php
+ session_start(); // this MUST be called prior to any output including whitespaces and line breaks!
+ $GLOBALS['ct_recipient']   = 'YOU@EXAMPLE.COM'; // Change to your email address!
+ $GLOBALS['ct_msg_subject'] = 'Securimage Test Contact Form';
+ $GLOBALS['DEBUG_MODE'] = 1;
+ // CHANGE TO 0 TO TURN OFF DEBUG MODE
+ // IN DEBUG MODE, ONLY THE CAPTCHA CODE IS VALIDATED, AND NO EMAIL IS SENT
+ // Process the form, if it was submitted
+ process_si_contact_form();
  ?>
+
+ <!DOCTYPE HTML>
+ <html>
+
+ <head>
+
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   <link rel="stylesheet" href="css/materialize.css">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ <title>Formulario de Postulacion</title>
+ <link rel="shortcut icon" href="http://atmspa.cl/wp-content/themes/atm-spa-theme/img/favicon.ico" type="image/x-icon">
+ </head>
+
+ <header>
+
+
+ <div class="navbar-fixed transparentBG">
+     <nav>
+   <div class="nav-wrapper #eeeeee grey lighten-3
+ ">
+
+     <ul id="nav-mobile" class="left hide-on-med-and-down">
+       <li><a href="http://www.atmspa.cl" class="brand-logo vertical">HOME</a></li>
+     </ul>
+   </div>
+ </nav>
+ </div>
+
+ </header>
+
+     <body>
+       <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+         <script src="jquery.rut.js"></script>
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+           <div class="container">
+             <!-- Page Content goes here -->
+
+       <section class="body">
+
+
 
 <br>
 <br>
@@ -15,6 +66,9 @@
   Aca podras dejar tu Currículum. Una vez enviado quedará en nuestra
   base de datos. Si envia CV por segunda vez se editarán los datos iniciales
 </p>
+
+<div id="success_message" style="display: none">Your message has been sent!<br />We will contact you as soon as possible.</div>
+
 </div>
 </div>
 </div>
@@ -22,7 +76,8 @@
 <br>
 <br>
 
-      <form method="post" action="valid.php" enctype="multipart/form-data">
+      <form method="post" action="" id="contact_form" onsubmit="return processForm()" enctype="multipart/form-data">
+        <input type="hidden" name="do" value="contact" />
 
 
         <div class="input-field col s12">
@@ -380,7 +435,7 @@
      <input type="file" name="fileToUpload" id="fileToUpload">
    </div>
    <div class="file-path-wrapper">
-     <input class="file-path validate" type="text">
+     <input class="file-path validate"  name ="path" type="text">
    </div>
  </div>
 <br></br>
@@ -388,13 +443,11 @@
 <br>
 <br>
 
-<iframe frameborder="0" width="215px" height="80px" id="captcha" src="securimage/securimage_show.php" alt="CAPTCHA Image"></iframe>
-    <div class="row">
-    <input class="input-field col s3" type="text" name="captcha_code" size="10" maxlength="6" required/>
-    <a href="#" class="waves-effect waves-light btn #e65100 orange darken-4
-" onclick="document.getElementById('captcha').src = 'securimage/securimage_show.php?' + Math.random(); return false"><i class="material-icons left">autorenew</i>Renovar</a>
 
-  </div>
+  <p>
+    <?php require_once 'securimage/securimage.php'; echo Securimage::getCaptchaHtml(array('input_name' => 'ct_captcha')); ?>
+  </p>
+
 
 <br></br>
 <div class="row">
@@ -405,5 +458,211 @@
   </div>
 </form>
 
-<?php    include_once 'footer.php';
+
+<script type="text/javascript">
+    $.noConflict();
+
+    function reloadCaptcha()
+    {
+
+      if (typeof window.captcha_image_audioObj !== 'undefined') captcha_image_audioObj.refresh(); document.getElementById('captcha_image').src = '/gitHub/formularioREAL/securimage/securimage_show.php?' + Math.random();
+      this.blur();
+       return false
+        //jQuery('#siimage').prop('src', '/gitHub/formularioREAL/securimage/securimage_show.php?' + Math.random());
+    }
+
+    function processForm()
+    {
+        jQuery.ajax({
+            url: '/gitHub/formularioREAL/form1.php',
+            type: 'POST',
+            data: jQuery('#contact_form').serialize(),
+            dataType: 'json',
+        }).done(function(data) {
+            if (data.error === 0) {
+
+              alert("Datos ENVIADOS");
+
+  jQuery('#success_message').show();
+    jQuery('#contact_form')[0].reset();
+    reloadCaptcha();
+              //document.getElementById(#contact_form).submit();
+
+            } else {
+                alert("There was an error with your submission.\n\n" + data.message);
+
+                if (data.message.indexOf('Incorrect security code') >= 0) {
+                    jQuery('#captcha_code').val('');
+                }
+                reloadCaptcha();
+
+            }
+        });
+
+        return false;
+    }
+</script>
+
+</section>
+
+
+
+<script  src="js/index.js"></script>
+
+
+<script>
+
+
+(function($){
+    // your code
+
+  $(document).ready(function() {
+    $('select').material_select();
+    $('.tooltipped').tooltip();
+
+
+
+  });
+
+  $(function() {
+  $("#regiones").on('change', function() {
+
+
+      // re-initialize material-select
+      //$('#comunas').material_select();
+      $("#comunas").material_select();
+
+      //$('select').material_select();
+
+  });
+  });
+
+
+
+
+  $(function() {
+
+    var rut=document.getElementById('rut');
+    $("input#rut").rut({
+         formatOn: 'keyup',
+        minimumLength: 7, // validar largo mínimo; default: 2
+          validateOn: 'change' // si no se quiere validar, pasar null
+        });
+
+
+      $("input#rut").rut().on('rutValido', function(e, rut, dv) {
+
+        this.setCustomValidity("");
+
+      });
+
+      $("input#rut").rut().on('rutInvalido', function(e) {
+
+        rut.setCustomValidity("RUT Invalido");
+});
+
+  });
+
+})(jQuery);
+
+</script>
+
+</div>
+</body>
+
+<footer class="page-footer #f5f5f5 orange">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="grey-text">ATM</h5>
+                <img src="imgs/atmspa-logo-r.svg">
+                  </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="grey-text">Links</h5>
+                <ul>
+                  <li><a class="grey-text" href="#!">Link 1</a></li>
+                  <li><a class="grey-text" href="#!">Link 2</a></li>
+                  <li><a class="grey-text" href="#!">Link 3</a></li>
+                  <li><a class="grey-text" href="#!">Link 4</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="footer-copyright">
+            <div class="container grey-text">
+            © 2017 Derechos Reservados
+            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+          </div>
+        </footer>
+
+
+
+</html>
+
+<?php
+// The form processor PHP code
+function process_si_contact_form()
+{
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && @$_POST['do'] == 'contact') {
+        // if the form has been submitted
+        foreach($_POST as $key => $value) {
+            if (!is_array($key)) {
+                // sanitize the input data
+                if ($key != 'ct_message') $value = strip_tags($value);
+                $_POST[$key] = htmlspecialchars(stripslashes(trim($value)));
+            }
+        }
+        $captcha = @$_POST['ct_captcha']; // the user's entry for the captcha code
+
+        $errors = array();  // initialize empty error array
+
+        // Only try to validate the captcha if the form has no errors
+        // This is especially important for ajax calls
+        $path     = @$_POST['path'];     // url from the form
+
+
+        if($path===""){
+
+          $errors['file_error'] = "NO HAY ARCHIVO";
+
+        }
+
+
+        if (sizeof($errors) == 0) {
+            require_once dirname(__FILE__) . '/securimage/securimage.php';
+            $securimage = new Securimage();
+            if ($securimage->check($captcha) == false) {
+                $errors['captcha_error'] = 'Codigo incorrecto';
+            }
+        }
+
+        if (sizeof($errors) == 0) {
+
+            if (isset($GLOBALS['DEBUG_MODE']) && $GLOBALS['DEBUG_MODE'] == false) {
+                // send the message with mail()
+            }
+            print_r($_FILES);
+
+            require("valid.php");
+
+            //require_once("valid.php");
+            $return = array('error' => 0, 'message' => 'OK');
+
+            die(json_encode($return));
+        } else {
+
+            $errmsg = '';
+            foreach($errors as $key => $error) {
+                // set up error messages to display with each field
+                $errmsg .= " - {$error}\n";
+            }
+
+            $return = array('error' => 1, 'message' => $errmsg);
+            die(json_encode($return));
+        }
+    } // POST
+
+} // function process_si_contact_form()
 ?>
