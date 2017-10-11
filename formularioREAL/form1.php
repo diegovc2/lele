@@ -8,6 +8,10 @@
  // CHANGE TO 0 TO TURN OFF DEBUG MODE
  // IN DEBUG MODE, ONLY THE CAPTCHA CODE IS VALIDATED, AND NO EMAIL IS SENT
  // Process the form, if it was submitted
+ include('process_si_contact_form.php');
+
+
+
  process_si_contact_form();
  ?>
 
@@ -67,7 +71,6 @@
   base de datos. Si envia CV por segunda vez se editarán los datos iniciales
 </p>
 
-<div id="success_message" style="display: none">Your message has been sent!<br />We will contact you as soon as possible.</div>
 
 </div>
 </div>
@@ -99,14 +102,7 @@
 
 
 
-    <div class="input-field col s12">
 
-    <input type="text" name="direccion" class="tooltipped" data-tooltip="Ingrese Calle y Número"  required>
-    <label>Direccion</label>
-
-  </div>
-
-<br>
 
 
 <div class="row">
@@ -336,6 +332,15 @@
     </div>
 
   </div>
+
+  <div class="input-field col s12">
+
+  <input type="text" name="direccion" class="tooltipped" data-tooltip="Ingrese Calle y Número"  required>
+  <label>Direccion</label>
+
+</div>
+
+<br>
 <div class="row">
 
 <div class="input-field col s1">
@@ -432,7 +437,7 @@
 <div class="file-field input-field">
    <div class="btn #e65100 orange darken-4">
      <span>Subir Archivo</span>
-     <input type="file" name="fileToUpload" id="fileToUpload">
+     <input type="file" name="fileToUpload" id="fileToUpload" required/>
    </div>
    <div class="file-path-wrapper">
      <input class="file-path validate"  name ="path" type="text">
@@ -451,10 +456,9 @@
 
 <br></br>
 <div class="row">
-    <button class="btn waves-effect waves-light center-align #e65100 orange darken-4
-"  type="submit" id="submit" name="submit">Enviar
+      <input type="submit"  name="submit"/>
+      Enviar
       <i class="material-icons right">send</i>
-    </button>
   </div>
 </form>
 
@@ -468,36 +472,41 @@
       if (typeof window.captcha_image_audioObj !== 'undefined') captcha_image_audioObj.refresh(); document.getElementById('captcha_image').src = '/gitHub/formularioREAL/securimage/securimage_show.php?' + Math.random();
       this.blur();
        return false
-        //jQuery('#siimage').prop('src', '/gitHub/formularioREAL/securimage/securimage_show.php?' + Math.random());
     }
 
     function processForm()
     {
+
+
+        var fd = new FormData(document.getElementById("contact_form"));
+        fd.append("CustomField", "This is some extra data");
         jQuery.ajax({
-            url: '/gitHub/formularioREAL/form1.php',
-            type: 'POST',
-            data: jQuery('#contact_form').serialize(),
-            dataType: 'json',
+          url: "form1.php",
+          type: "POST",
+          data: fd,
+          processData: false,  // tell jQuery not to process the data
+          contentType: false,
+          dataType: 'json'
+
         }).done(function(data) {
             if (data.error === 0) {
 
-              alert("Datos ENVIADOS");
-
-  jQuery('#success_message').show();
-    jQuery('#contact_form')[0].reset();
-    reloadCaptcha();
+              alert("Sus datos y su Curriculum quedaron guardados en nuestra base de datos");
+              jQuery('#contact_form')[0].reset();
+              reloadCaptcha();
               //document.getElementById(#contact_form).submit();
 
             } else {
-                alert("There was an error with your submission.\n\n" + data.message);
+                alert("Hubo un error con su cuestionario.\n\n" + data.message);
 
                 if (data.message.indexOf('Incorrect security code') >= 0) {
                     jQuery('#captcha_code').val('');
                 }
                 reloadCaptcha();
 
-            }
-        });
+            }   // tell jQuery not to set contentType
+          });
+
 
         return false;
     }
@@ -514,7 +523,6 @@
 
 
 (function($){
-    // your code
 
   $(document).ready(function() {
     $('select').material_select();
@@ -542,23 +550,26 @@
 
   $(function() {
 
-    var rut=document.getElementById('rut');
-    $("input#rut").rut({
+    $("input#rut").rut();
+
+    $("#rut").rut({
          formatOn: 'keyup',
         minimumLength: 7, // validar largo mínimo; default: 2
           validateOn: 'change' // si no se quiere validar, pasar null
         });
 
 
-      $("input#rut").rut().on('rutValido', function(e, rut, dv) {
-
-        this.setCustomValidity("");
+      $("#rut").rut().on('rutValido', function(e, rut, dv) {
+        this.setCustomValidity('');
 
       });
 
-      $("input#rut").rut().on('rutInvalido', function(e) {
+      $("#rut").rut().on('rutInvalido', function(e) {
 
-        rut.setCustomValidity("RUT Invalido");
+
+        this.setCustomValidity('Rut inválido');
+
+
 });
 
   });
@@ -603,66 +614,5 @@
 
 <?php
 // The form processor PHP code
-function process_si_contact_form()
-{
-    if ($_SERVER['REQUEST_METHOD'] == 'POST' && @$_POST['do'] == 'contact') {
-        // if the form has been submitted
-        foreach($_POST as $key => $value) {
-            if (!is_array($key)) {
-                // sanitize the input data
-                if ($key != 'ct_message') $value = strip_tags($value);
-                $_POST[$key] = htmlspecialchars(stripslashes(trim($value)));
-            }
-        }
-        $captcha = @$_POST['ct_captcha']; // the user's entry for the captcha code
 
-        $errors = array();  // initialize empty error array
-
-        // Only try to validate the captcha if the form has no errors
-        // This is especially important for ajax calls
-        $path     = @$_POST['path'];     // url from the form
-
-
-        if($path===""){
-
-          $errors['file_error'] = "NO HAY ARCHIVO";
-
-        }
-
-
-        if (sizeof($errors) == 0) {
-            require_once dirname(__FILE__) . '/securimage/securimage.php';
-            $securimage = new Securimage();
-            if ($securimage->check($captcha) == false) {
-                $errors['captcha_error'] = 'Codigo incorrecto';
-            }
-        }
-
-        if (sizeof($errors) == 0) {
-
-            if (isset($GLOBALS['DEBUG_MODE']) && $GLOBALS['DEBUG_MODE'] == false) {
-                // send the message with mail()
-            }
-            print_r($_FILES);
-
-            require("valid.php");
-
-            //require_once("valid.php");
-            $return = array('error' => 0, 'message' => 'OK');
-
-            die(json_encode($return));
-        } else {
-
-            $errmsg = '';
-            foreach($errors as $key => $error) {
-                // set up error messages to display with each field
-                $errmsg .= " - {$error}\n";
-            }
-
-            $return = array('error' => 1, 'message' => $errmsg);
-            die(json_encode($return));
-        }
-    } // POST
-
-} // function process_si_contact_form()
 ?>
