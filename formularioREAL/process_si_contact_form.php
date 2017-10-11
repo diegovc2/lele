@@ -122,8 +122,8 @@ function process_si_contact_form()
                         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
 
 
-                          $sql="REPLACE into postulaciones (nombre,rut,region,comuna,direccion,telefono,email,educacion_basica,educacion_superior,titulos,cursos,experiencia,comentarios) values
-                          ('$name','$rut','$region','$comuna','$direccion','$telefonocomp','$email','$colegio','$media','$titulos','$cursos','$experiencia','$message');";
+                          $sql="REPLACE into postulaciones (nombre,rut,pais,region,comuna,direccion,telefono,email,educacion_basica,educacion_superior,titulos,cursos,experiencia,comentarios) values
+                          ('$name','$rut','$pais','$region','$comuna','$direccion','$telefonocomp','$email','$colegio','$media','$titulos','$cursos','$experiencia','$message');";
 
                           $result=mysqli_query($conn,$sql);
 
