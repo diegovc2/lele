@@ -30,9 +30,13 @@ if(($_SESSION['admin'])==1){
 
       <th>RUT</th>
 
-        <th>Comuna</th>
+            <th>Pais</th>
 
-          <th>Ciudad</th>
+                  <th>Region</th>
+
+          <th>Comuna</th>
+          <th>Direccion</th>
+
           <th>Telefono</th>
           <th>E-mail</th>
           <th>Educación Básica</th>
@@ -41,6 +45,10 @@ if(($_SESSION['admin'])==1){
           <th>Cursos</th>
           <th>Experiencia</th>
           <th>Comentarios</th>
+          <th>Adjunto</th>
+          <th>Fecha</th>
+
+
           <th></th>
 
 
@@ -61,8 +69,10 @@ if(($_SESSION['admin'])==1){
 
     $nombre=$fila['nombre'];
     $rut=$fila['rut'];
+    $pais=$fila['pais'];
+    $region=$fila['region'];
     $comuna=$fila['comuna'];
-    $ciudad=$fila['region'];
+    $direccion=$fila['direccion'];
     $telefono=$fila['telefono'];
     $email=$fila['email'];
     $educacion_basica=$fila['educacion_basica'];
@@ -71,19 +81,23 @@ if(($_SESSION['admin'])==1){
     $cursos=$fila['cursos'];
     $experiencia=$fila['experiencia'];
     $comentarios=$fila['comentarios'];
+    $link=$fila['link'];
+    $fecha=$fila['fecha'];
  ?>
 <tr>
 
   <td><?php echo $nombre ?></td>
 
     <td><?php echo $rut ?></td>
+    <td><?php echo $pais ?></td>
 
 
-      <td><?php echo $ciudad ?></td>
+      <td><?php echo $region ?></td>
 
       <td><?php echo $comuna ?></td>
 
-        
+      <td><?php echo $direccion ?></td>
+
 
         <td><?php echo $telefono ?></td>
 
@@ -100,7 +114,13 @@ if(($_SESSION['admin'])==1){
 
         <td><?php echo $comentarios ?></td>
 
-        <?php echo "<td><a href=\"listarcv.php?rut=$rut\" onClick=\"return confirm('¿Seguro que quieres Borrarlo?')\">Delete</a></td>"  ?>
+        <?php echo "<td><a href=\"$link\">Descarga</a></td>"  ?>
+
+        <td><?php echo $fecha ?></td>
+
+
+
+        <?php echo "<td style='background-color:#7ab2bc'><a href=\"listarcv.php?rut=$rut\" onClick=\"return confirm('¿Seguro que quieres Borrarlo?')\">Delete</a></td>"  ?>
 
 
 

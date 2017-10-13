@@ -56,6 +56,7 @@ function process_si_contact_form()
           $cursos=$_POST['cursos'];
           $experiencia=$_POST['experiencia'];
                 $message=$_POST['message'];
+                $fecha=$date = date("d/m/Y G:i");
                 $from='From:TangledDemo';
                 $to='diegoveloso34@hotmail.com';
                 $subject='Hello';
@@ -122,8 +123,8 @@ function process_si_contact_form()
                         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
 
 
-                          $sql="REPLACE into postulaciones (nombre,rut,pais,region,comuna,direccion,telefono,email,educacion_basica,educacion_superior,titulos,cursos,experiencia,comentarios) values
-                          ('$name','$rut','$pais','$region','$comuna','$direccion','$telefonocomp','$email','$colegio','$media','$titulos','$cursos','$experiencia','$message');";
+                          $sql="REPLACE into postulaciones (nombre,rut,pais,region,comuna,direccion,telefono,email,educacion_basica,educacion_superior,titulos,cursos,experiencia,comentarios,link,fecha) values
+                          ('$name','$rut','$pais','$region','$comuna','$direccion','$telefonocomp','$email','$colegio','$media','$titulos','$cursos','$experiencia','$message','../$target_file','$fecha');";
 
                           $result=mysqli_query($conn,$sql);
 

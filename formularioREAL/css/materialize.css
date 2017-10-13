@@ -2881,9 +2881,14 @@ ul.staggered-list li {
 }
 
 .page-footer {
-  padding-top: 20px;
-  color: #fff;
+  color: #959595;
   background-color: #ee6e73;
+}
+
+.page-footer .container{
+
+  margin-left: 50px;
+
 }
 
 .page-footer .footer-copyright {
@@ -4274,6 +4279,10 @@ nav .brand-logo {
   display: inline-block;
   font-size: 2.1rem;
   padding: 0;
+}
+
+.navbar-material .nav-wrapper .brand-logo img {
+
 }
 
 .transparentBG {
@@ -5968,8 +5977,8 @@ button:focus {
 }
 
 label {
+  font-size:21px;
 
-  font-size: 1rem;
   color: orange;
 }
 
@@ -6354,6 +6363,7 @@ textarea.materialize-textarea + label:after, .select-wrapper + label:after {
 }
 
 .input-field.col label {
+  font-size:21px;
   left: 1rem;
 }
 

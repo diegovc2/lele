@@ -57,7 +57,6 @@
   </script>
   <div style="clear: both"></div>
 
-  <label for="captcha_code">Type the text:</label>
   <input type="text" name="captcha_code" id="captcha_code">
 </div>
 
@@ -71,7 +70,7 @@
 <div>
   <!-- captcha image element; the <?php echo md5(...) ?> code throughout is to prevent caching issues -->
   <img style="float: left; padding-right: 5px" id="captcha_image2" src="securimage_show.php?<?php echo md5(uniqid(time)) ?>" alt="CAPTCHA Image">
-  
+
   <!-- invisible div containing captcha audio tag, and optional flash fallback code -->
   <div id="captcha_image_audio_div2">
     <!-- the audio tag -->

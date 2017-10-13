@@ -34,12 +34,13 @@
 
  <div class="navbar-fixed transparentBG">
      <nav>
-   <div class="nav-wrapper #eeeeee grey lighten-3
- ">
+   <div class="nav-wrapper #eeeeee grey lighten-3">
 
-     <ul id="nav-mobile" class="left hide-on-med-and-down">
-       <li><a href="http://www.atmspa.cl" class="brand-logo vertical">HOME</a></li>
-     </ul>
+    <a href="http://www.atmspa.cl" class="brand-logo"><img id="logo" src="imgs/atmspa-logo-r.svg" style="
+    height: 64px;
+    margin-top: 15px;
+"> </a>
+
    </div>
  </nav>
  </div>
@@ -456,10 +457,19 @@
 
 <br></br>
 <div class="row">
+  <button class="btn waves-effect waves-light #e65100 orange darken-4" name="action">
       <input type="submit"  name="submit"/>
-      Enviar
       <i class="material-icons right">send</i>
+    </button>
+
   </div>
+
+<div class="row">
+  <a href="uploads/TIDS09_U2_AF6_LC_V1APqjqt47Zn.docx" download="">asdff</a>
+
+</div>
+
+
 </form>
 
 
@@ -492,8 +502,8 @@
             if (data.error === 0) {
 
               alert("Sus datos y su Curriculum quedaron guardados en nuestra base de datos");
-              jQuery('#contact_form')[0].reset();
-              reloadCaptcha();
+              window.location = 'http://atmspa.cl/';
+
               //document.getElementById(#contact_form).submit();
 
             } else {
@@ -581,31 +591,32 @@
 </div>
 </body>
 
-<footer class="page-footer #f5f5f5 orange">
+<footer class="page-footer white">
+  <div class="footer-copyright #f5f5f5 orange">
+    <div class="container grey-text">
+    </div>
+  </div>
           <div class="container">
-            <div class="row">
-              <div class="col l6 s12">
-                <h5 class="grey-text">ATM</h5>
-                <img src="imgs/atmspa-logo-r.svg">
-                  </div>
-              <div class="col l4 offset-l2 s12">
-                <h5 class="grey-text">Links</h5>
+
+
+            <div class="row" style="padding-top:80px;">
+              <div class="col l2 s2">
+                <img style="height:64px;" src="imgs/atmspa-logo-r.svg">
                 <ul>
-                  <li><a class="grey-text" href="#!">Link 1</a></li>
-                  <li><a class="grey-text" href="#!">Link 2</a></li>
-                  <li><a class="grey-text" href="#!">Link 3</a></li>
-                  <li><a class="grey-text" href="#!">Link 4</a></li>
+                  <li>Luis Thayer Ojeda # 0115, Of. 1101 </li>
+                  <li>Providencia - Santiago, Chile</li>
+                  <li></li>
+                  <li>(56 2) 2945 8900</li>
+                  <li> info@atmsa.cl</li>
+
                 </ul>
               </div>
             </div>
+
+
           </div>
 
-          <div class="footer-copyright">
-            <div class="container grey-text">
-            © 2017 Derechos Reservados
-            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-            </div>
-          </div>
+
         </footer>
 
 
