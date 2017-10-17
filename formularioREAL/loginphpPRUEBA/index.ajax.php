@@ -32,7 +32,7 @@
 
     <br>
 
-    <button onclick="window.location.href='listarcv.php'">POSTULACIONES</button>
+    <button onclick="window.location.href='/localhost/codeigniter/index.php/main/subidas'">POSTULACIONES</button>
         <button onclick="window.location.href='listusr.php'">USUARIOS</button>
 
     <?php
